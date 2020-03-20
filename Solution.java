@@ -13,14 +13,33 @@ import java.util.HashMap;
 
 public class Solution {
 
-     static boolean one2one(String s1, String s2) {		 
+     static boolean one2one(String s1, String s2) {
+	     HashMap<Character, Character> hmap = new HashMap<Character, Character>();
+		for(int i = 0; i < s1.length();i++) {
+		  char key1 = s1.charAt(i);
+		  char key2 = s2.charAt(i);
+
+		  if(hmap.containsKey(key1)){
+		    if(hmap.get(key1).equals(key2)) {
+		      continue;
+		    }
+		    return false;
+		  }
+		  else {
+		    if(!hmap.containsKey(key2)) {
+		      hmap.put(key1, key2);
+
+		    }
+		    else return false;
+		  }
+
+		 }
+		 return true;
+
     }
 
 		public static void main(String[] args) {
-		boolean res = one2one("foo", "bar");
-				 System.out.println(res);
-
-				 res = one2one("bar", "foo");
+			boolean res = one2one(args[0],args[1]);
 				 System.out.println(res);
 	 }
 }
